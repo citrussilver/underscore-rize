@@ -1,13 +1,16 @@
 <template>
-  <section class="hero is-fullheight is-info is-bold">
+  <section class="hero is-fullheight is-bold hero-override">
       <div class="hero-body">
           <div class="container has-text-centered">
               <p class="title">
                 Underscore-rize
                 </p>
+                 <p class="subtitle">
+                    Replace spaces with underscores
+                </p>
               <div class="content-container">
                   <div class="content-container-item">
-                      <textarea id="inputBox" cols="30" rows="10" spellcheck="false" v-model="stringInput" @keyup="checkText" />
+                      <textarea id="inputBox" placeholder="Paste or type your text here" cols="30" rows="10" spellcheck="false" v-model="stringInput" @keyup="checkText" />
                     </div>
                     <div class="content-container-item">
                         <label class="text-counter">{{stringInput.length}}</label>
@@ -21,7 +24,7 @@
                         <button :disabled="isDisabled" @click.prevent="copyText" class="button is-primary is-rounded override">Copy to Clipboard</button>
                     </div>
                     <div class="one-third column">
-                        <button @click.prevent="resetText" class="button is-danger is-rounded override">Reset</button>
+                        <button @click.prevent="resetText" class="button is-danger is-rounded override reset">Reset</button>
                     </div>
                 </div>
             </div>
@@ -51,8 +54,8 @@ export default {
                     console.log(this.stringInput.replace(/ /g,"_"));
                     this.stringInput = this.stringInput.replace(/ /g,"_");
                     toast({
-                        message: 'Underscores applied!',
-                        type: 'is-danger',
+                        message: 'Text Underscore-rized!',
+                        type: 'is-success',
                         position: "top-center",
                         dismissible: true,
                         pauseOnHover: true,
@@ -120,18 +123,26 @@ export default {
 </script>
 
 <style scoped>
+    body {
+        --transition-delay: 1s;
+        margin: 0;
+    }
+
     .content-container {
         display: flex;
         flex-direction: column;
-        
         margin: 2rem 0rem;
     }
     .content-container-item {
         margin: 0.5rem 2rem;
     }
     
-    .counter-theme {
-        font-size: 90px;
+    .hero-override {
+        background-color: #2B2624;
+    }
+
+    .hero-override p, label {
+        color: #fff;
     }
 
     .buttons-container.content, .one-third.column {
@@ -146,24 +157,38 @@ export default {
 
     .override {
         font-weight: bold;
-        border: 1.5px solid #fff;
+        
+        transition: transform 0.5s ease-in-out;
+        /* transition: transform 1s cubic-bezier(0.98, 0.32, 0.3, 1.04); */
+        transform: scale(1);
     }
 
     .override:hover {
-        background: orange;
+        transform: scale(1.1);
+        background: #e69138;
         border: 1.5px solid #fff;
+    }
+
+    .override.reset:hover {
+        background: white;
+        color: #f14668;
+        border: 1.5px solid #f14668;
     }
 
     .text-counter {
         background: #66615e;
-        padding: 1rem;
-        border-radius: 50px;
+        padding: 0.8rem;
+        border-radius: 5rem;
     }
 
     #inputBox {
         outline: none;
         font-size: 1.5rem;
         resize: none;
+        background-color: #2B2624;
+        color: white;
+        border: 0.1px solid #fff;
+        border-radius: 0.5rem;
     }
 
     @media screen and (max-width: 600px) {
