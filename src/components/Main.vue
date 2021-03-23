@@ -2,7 +2,9 @@
   <section class="hero is-fullheight is-info is-bold">
       <div class="hero-body">
           <div class="container has-text-centered">
-              <h2 class="subtitle">Underscore-rize</h2>
+              <p class="title">
+                Underscore-rize
+                </p>
               <div class="content-container">
                   <div class="content-container-item">
                       <textarea id="inputBox" cols="30" rows="10" spellcheck="false" v-model="stringInput" @keyup="checkText" />
@@ -135,7 +137,7 @@ export default {
     .buttons-container.content, .one-third.column {
         display: flex;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;
     }
 
     .one-third.column {
@@ -159,16 +161,22 @@ export default {
     }
 
     #inputBox {
+        outline: none;
         font-size: 1.5rem;
         resize: none;
     }
 
     @media screen and (max-width: 600px) {
         /* smaller screens */
+
         .buttons-container.content {
             flex-direction: column;   /* by simply swap direction it work on smaller screen */
             align-items: center;
             justify-content: center;
+        }
+
+        #inputBox {
+            width: 70vw;
         }
     }
 </style>
