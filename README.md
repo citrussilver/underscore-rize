@@ -1,5 +1,5 @@
 # underscore-rize
-Converts spaces to underscores. Uses Clipboard API instead of deprecated document.execCommand()
+Converts spaces to underscores. Uses Clipboard API instead of deprecated ```document.execCommand()```
 
 ## Project setup
 ```
